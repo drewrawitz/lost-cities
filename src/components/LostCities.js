@@ -3,6 +3,9 @@ import _ from 'underscore';
 
 const Game = {
   STARTING_HAND: 8,
+  messages: {
+    placeCard: " must place a card in an expedition or on the board"
+  },
   playerOne: {
       name: 'Drew',
       cards: []
@@ -24,7 +27,8 @@ class LostCities extends Component {
     this.state = {
       deck: [],
       playerOne: Game.playerOne,
-      playerTwo: Game.playerTwo
+      playerTwo: Game.playerTwo,
+      action: null
     }
   }
 
@@ -71,20 +75,17 @@ class LostCities extends Component {
 
     this.setState({
       deck: newDeck,
-      playerOne: {
-        name: this.state.playerOne.name,
-        cards: p1
-      },
-      playerTwo: {
-        name: this.state.playerTwo.name,
-        cards: p2
-      }
+      action: this.state.playerOne.name + Game.messages.placeCard
     })
+
+    this.state.playerOne.cards = p1;
+    this.state.playerTwo.cards = p2;
   }
 
   render() {
     return (
       <div>
+        <div style={{ textAlign: "center" }}>{this.state.action}</div>
         <h2>Lost Cities</h2>
           <div>
             <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
