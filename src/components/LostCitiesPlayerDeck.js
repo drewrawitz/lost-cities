@@ -1,5 +1,6 @@
 import React, { Component  } from 'react';
 import _ from 'underscore';
+import classNames from 'classnames';
 
 class LostCitiesPlayerDeck extends Component {
 
@@ -7,7 +8,8 @@ class LostCitiesPlayerDeck extends Component {
     super(props)
 
     this.state = {
-      cards: {}
+      cards: {},
+      hasSelection: false
     }
   }
 
@@ -39,11 +41,22 @@ class LostCitiesPlayerDeck extends Component {
   }
 
   render() {
+    var cardWrapperClasses = classNames(
+      'lost-cities__card-wrapper',
+      {'lost-cities__card-wrapper--has-selection': this.state.hasSelection}
+    );
+
     return (
-      <ul className="lost-cities__card-wrapper">
-      {_.map(this.state.cards, (obj) =>
-        <li className={"lost-cities__card " + obj.color + obj.card}></li>
-      )}
+      <ul className={cardWrapperClasses}>
+      {_.map(this.state.cards, (obj) => {
+        var classes = classNames(
+          'lost-cities__card',
+          obj.color + obj.card,
+          {'lost-cities__card--is-selected': obj.selected}
+        );
+
+        return <li onClick={this.props.selectCard.bind(this, obj.color, obj.card)} className={classes}></li>
+      })}
       </ul>
     )
   }

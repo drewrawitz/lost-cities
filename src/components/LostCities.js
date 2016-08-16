@@ -44,7 +44,7 @@ class LostCities extends Component {
       // loop through our arrays to create our deck
       _.each(Game.deck.colors, function(color) {
         _.each(Game.deck.cards, function(card) {
-          deck.push({ color, card })
+          deck.push({ color, card, selected: false })
         })
       })
 
@@ -84,6 +84,32 @@ class LostCities extends Component {
     this.state.playerTwo.cards = p2;
   }
 
+  selectCard(color, card) {
+      var selectedIndex = _.findIndex(this.state.cards, function(cards) {
+        return cards.color == color && cards.card == card
+      })
+
+      // if selecting the same card, lets deselect it
+      if(this.state.cards[selectedIndex].selected) {
+        this.state.cards[selectedIndex].selected = false
+        this.setState({ hasSelection: false })
+
+        return;
+      }
+
+      // make sure to remove any selected cards
+      _.each(this.state.cards, function(cards) {
+        cards.selected = false;
+      });
+
+      this.state.cards[selectedIndex].selected = true;
+
+      this.setState({
+        cards: this.state.cards,
+        hasSelection: true
+      })
+  }
+
   render() {
     return (
       <div>
@@ -91,10 +117,14 @@ class LostCities extends Component {
         <h2>Lost Cities</h2>
           <div>
             <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
-            <LostCitiesPlayerDeck cards={this.state.playerOne.cards} />
+            <LostCitiesPlayerDeck
+              cards={this.state.playerOne.cards}
+              selectCard={this.selectCard} />
 
             <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
-            <LostCitiesPlayerDeck cards={this.state.playerTwo.cards} />
+            <LostCitiesPlayerDeck
+              cards={this.state.playerTwo.cards}
+              selectCard={this.selectCard} />
           </div>
 
         <h4>Remaining Deck ({this.state.deck.length})</h4>

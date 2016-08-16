@@ -1,15 +1,31 @@
 .lost-cities__card {
+  position: relative;
+  top: 0;
   display: inline-block;
   background-image: url(../images/lost-cities_cards.png);
+  background-repeat: no-repeat;
   width: 85px;
   height: 133px;
   text-indent: -9999px;
   margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .lost-cities__card-wrapper {
   margin: 0;
   padding: 0;
+}
+
+.lost-cities__card-wrapper--has-selection {
+  .lost-cities__card {
+    opacity: 0.6;
+  }
+
+  .lost-cities__card--is-selected {
+    top: -15px;
+    opacity: 1;
+  }
 }
 
 .lost-cities__card--front { background-position: 85px 133px; }
