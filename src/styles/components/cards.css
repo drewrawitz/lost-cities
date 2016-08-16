@@ -1,0 +1,65 @@
+.lost-cities__card {
+  display: inline-block;
+  background-image: url(../images/lost-cities_cards.png);
+  width: 85px;
+  height: 133px;
+  text-indent: -9999px;
+  margin: 5px;
+}
+
+.lost-cities__card-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.lost-cities__card--front { background-position: 85px 133px; }
+.white0 { background-position: -765px -266px; }
+.white2 { background-position: 0px -266px; }
+.white3 { background-position: -85px -266px; }
+.white4 { background-position: -170px -266px; }
+.white5 { background-position: -255px -266px; }
+.white6 { background-position: -340px -266px; }
+.white7 { background-position: -425px -266px; }
+.white8 { background-position: -510px -266px; }
+.white9 { background-position: -595px -266px; }
+.white10 { background-position: -680px -266px; }
+.blue0 { background-position: -765px -133px; }
+.blue2 { background-position: -0px -133px; }
+.blue3 { background-position: -85px -133px; }
+.blue4 { background-position: -170px -133px; }
+.blue5 { background-position: -255px -133px; }
+.blue6 { background-position: -340px -133px; }
+.blue7 { background-position: -425px -133px; }
+.blue8 { background-position: -510px -133px; }
+.blue9 { background-position: -595px -133px; }
+.blue10 { background-position: -680px -133px; }
+.green0 { background-position: -765px -399px; }
+.green2 { background-position: -0px -399px; }
+.green3 { background-position: -85px -399px; }
+.green4 { background-position: -170px -399px; }
+.green5 { background-position: -255px -399px; }
+.green6 { background-position: -340px -399px; }
+.green7 { background-position: -425px -399px; }
+.green8 { background-position: -510px -399px; }
+.green9 { background-position: -595px -399px; }
+.green10 { background-position: -680px -399px; }
+.yellow0 { background-position: -765px 0px; }
+.yellow2 { background-position: -0px -0px; }
+.yellow3 { background-position: -85px -0px; }
+.yellow4 { background-position: -170px 0px; }
+.yellow5 { background-position: -255px 0px; }
+.yellow6 { background-position: -340px 0px; }
+.yellow7 { background-position: -425px -0px; }
+.yellow8 { background-position: -510px -0px; }
+.yellow9 { background-position: -595px 0px; }
+.yellow10 { background-position: -680px -0px; }
+.red0 { background-position: -765px -532px; }
+.red2 { background-position: -0px -532px ; }
+.red3 { background-position: -85px -532px; }
+.red4 { background-position: -170px -532px; }
+.red5 { background-position: -255px -532px; }
+.red6 { background-position: -340px -532px; }
+.red7 { background-position: -425px -532px; }
+.red8 { background-position: -510px -532px; }
+.red9 { background-position: -595px -532px; }
+.red10 { background-position: -680px -532px; }

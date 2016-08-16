@@ -9,7 +9,7 @@ class LostCitiesCard extends Component {
     return (
       <ul className="lost-cities__card-wrapper">
       {_.map(this.props.data, (obj) =>
-        <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
+        <li className={"lost-cities__card " + obj.color + obj.card}></li>
       )}
       </ul>
     )

@@ -97,7 +97,9 @@ class LostCities extends Component {
           </div>
 
         <h4>Remaining Deck ({this.state.deck.length})</h4>
-        <LostCitiesCard data={this.state.deck} />
+          <ul className="lost-cities__card-wrapper">
+            <li className="lost-cities__card lost-cities__card--front"></li>
+          </ul>
       </div>
     )
   }
