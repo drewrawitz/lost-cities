@@ -1,7 +1,7 @@
 import React, { Component  } from 'react';
 import _ from 'underscore';
 
-class LostCitiesCard extends Component {
+class LostCitiesPlayerDeck extends Component {
 
   constructor(props) {
     super(props)
@@ -49,4 +49,4 @@ class LostCitiesCard extends Component {
   }
 }
 
-export default LostCitiesCard
+export default LostCitiesPlayerDeck
