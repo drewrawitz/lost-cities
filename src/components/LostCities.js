@@ -91,10 +91,10 @@ class LostCities extends Component {
         <h2>Lost Cities</h2>
           <div>
             <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
-            <LostCitiesPlayerDeck data={this.state.playerOne.cards} />
+            <LostCitiesPlayerDeck cards={this.state.playerOne.cards} />
 
             <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
-            <LostCitiesPlayerDeck data={this.state.playerTwo.cards} />
+            <LostCitiesPlayerDeck cards={this.state.playerTwo.cards} />
           </div>
 
         <h4>Remaining Deck ({this.state.deck.length})</h4>

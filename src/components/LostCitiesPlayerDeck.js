@@ -12,8 +12,8 @@ class LostCitiesPlayerDeck extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.state.cards) {
-      this.setState({ cards: nextProps.data }, function() {
+    if (nextProps.cards !== this.state.cards) {
+      this.setState({ cards: nextProps.cards}, function() {
         this.sortCards();
       });
     }
