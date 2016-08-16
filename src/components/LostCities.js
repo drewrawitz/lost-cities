@@ -25,6 +25,7 @@ class LostCities extends Component {
 
   constructor(props) {
     super(props)
+    
     this.state = {
       deck: {},
       playerOne: Game.playerOne,
