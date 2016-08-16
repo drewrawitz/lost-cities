@@ -1,6 +1,6 @@
 import React, { Component  } from 'react';
 import _ from 'underscore';
-import classNames from 'classnames';
+import LostCitiesCard from './LostCitiesCard';
 
 const Game = {
   STARTING_HAND: 8,
@@ -90,26 +90,14 @@ class LostCities extends Component {
         <h2>Lost Cities</h2>
           <div>
             <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
-            <ul>
-              {_.map(this.state.playerOne.cards, (obj) =>
-                <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
-              )}
-            </ul>
+            <LostCitiesCard data={this.state.playerOne.cards} />
 
             <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
-            <ul>
-              {_.map(this.state.playerTwo.cards, (obj) =>
-                <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
-              )}
-            </ul>
+            <LostCitiesCard data={this.state.playerTwo.cards} />
           </div>
 
         <h4>Remaining Deck ({this.state.deck.length})</h4>
-        <ul>
-            {_.map(this.state.deck, (obj) =>
-              <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
-            )}
-        </ul>
+        <LostCitiesCard data={this.state.deck} />
       </div>
     )
   }
