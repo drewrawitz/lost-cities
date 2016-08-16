@@ -1,5 +1,6 @@
 import React, { Component  } from 'react';
 import _ from 'underscore';
+import classNames from 'classnames';
 
 const Game = {
   STARTING_HAND: 8,
@@ -16,7 +17,7 @@ const Game = {
   },
   deck: {
     colors: ['red', 'yellow', 'blue', 'white', 'green'],
-    cards: ['handshake', 'handshake', 'handshake', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    cards: ['0', '0', '0', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   }
 }
 
@@ -25,7 +26,7 @@ class LostCities extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      deck: [],
+      deck: {},
       playerOne: Game.playerOne,
       playerTwo: Game.playerTwo,
       action: null
@@ -37,12 +38,12 @@ class LostCities extends Component {
   }
 
   getDeck() {
-      let deck = []
+      let deck = [];
 
       // loop through our arrays to create our deck
       _.each(Game.deck.colors, function(color) {
         _.each(Game.deck.cards, function(card) {
-          deck.push(color + ':' + card)
+          deck.push({ color, card })
         })
       })
 
@@ -66,7 +67,7 @@ class LostCities extends Component {
     // loop through the first 16 cards to pass them out
     for (var i = 0; i < dealDeck.length; i++) {
         if(i % 2 === 0) { // even
-            p1.push(dealDeck[i])
+          p1.push(dealDeck[i])
         }
         else if(i % 2) { // odd
           p2.push(dealDeck[i])
@@ -90,24 +91,24 @@ class LostCities extends Component {
           <div>
             <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
             <ul>
-              {this.state.playerOne.cards.map(card =>
-                <li>{card}</li>
+              {_.map(this.state.playerOne.cards, (obj) =>
+                <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
               )}
             </ul>
 
             <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
             <ul>
-              {this.state.playerTwo.cards.map(card =>
-                <li>{card}</li>
+              {_.map(this.state.playerTwo.cards, (obj) =>
+                <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
               )}
             </ul>
           </div>
 
         <h4>Remaining Deck ({this.state.deck.length})</h4>
         <ul>
-          {this.state.deck.map(card =>
-            <li>{card}</li>
-          )}
+            {_.map(this.state.deck, (obj) =>
+              <li className={"lost-cities__card " + obj.color + obj.card}>{obj.color + obj.card}</li>
+            )}
         </ul>
       </div>
     )
