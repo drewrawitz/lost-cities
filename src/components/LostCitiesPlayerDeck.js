@@ -55,7 +55,7 @@ class LostCitiesPlayerDeck extends Component {
           {'lost-cities__card--is-selected': obj.selected}
         );
 
-        return <li onClick={this.props.selectCard.bind(this, obj.id)} className={classes}></li>
+        return <li key={obj.id} onClick={this.props.selectCard.bind(this, obj.id)} className={classes}></li>
       })}
       </ul>
     )
