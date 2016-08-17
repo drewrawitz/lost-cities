@@ -1,4 +1,4 @@
-import React, { Component  } from 'react';
+import React, { Component } from 'react';
 import _ from 'underscore';
 import classNames from 'classnames';
 
@@ -9,7 +9,7 @@ class LostCitiesPlayerDeck extends Component {
 
     this.state = {
       cards: {},
-      hasSelection: false
+      selected: {}
     }
   }
 
@@ -43,7 +43,7 @@ class LostCitiesPlayerDeck extends Component {
   render() {
     var cardWrapperClasses = classNames(
       'lost-cities__card-wrapper',
-      {'lost-cities__card-wrapper--has-selection': this.state.hasSelection}
+      {'lost-cities__card-wrapper--has-selection': !_.isEmpty(this.state.selected)}
     );
 
     return (

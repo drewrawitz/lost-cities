@@ -1,6 +1,7 @@
-import React, { Component  } from 'react';
+import React, { Component } from 'react';
 import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
+import LostCitiesBoard from './LostCitiesBoard';
 
 const Game = {
   STARTING_HAND: 8,
@@ -94,7 +95,7 @@ class LostCities extends Component {
       // if selecting the same card, lets deselect it
       if(this.state.cards[selectedIndex].selected) {
         this.state.cards[selectedIndex].selected = false
-        this.setState({ hasSelection: false })
+        this.setState({ selected: {} })
 
         return;
       }
@@ -108,31 +109,28 @@ class LostCities extends Component {
 
       this.setState({
         cards: this.state.cards,
-        hasSelection: true
+        selected: this.state.cards[selectedIndex]
       })
   }
 
   render() {
     return (
-      <div>
-        <div style={{ textAlign: "center" }}>{this.state.action}</div>
+      <div className="container">
+        <div className="lost-cities__action">{this.state.action}</div>
         <h2>Lost Cities</h2>
-          <div>
-            <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
-            <LostCitiesPlayerDeck
-              cards={this.state.playerOne.cards}
-              selectCard={this.selectCard} />
+        <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
+        <LostCitiesPlayerDeck
+          cards={this.state.playerTwo.cards}
+          selectCard={this.selectCard} />
 
-            <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
-            <LostCitiesPlayerDeck
-              cards={this.state.playerTwo.cards}
-              selectCard={this.selectCard} />
-          </div>
+          <LostCitiesBoard
+            cards={this.state.deck}
+            selected={this.state.selected} />
 
-        <h4>Remaining Deck ({this.state.deck.length})</h4>
-          <ul className="lost-cities__card-wrapper">
-            <li className="lost-cities__card lost-cities__card--front"></li>
-          </ul>
+          <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
+          <LostCitiesPlayerDeck
+            cards={this.state.playerOne.cards}
+            selectCard={this.selectCard} />
       </div>
     )
   }
