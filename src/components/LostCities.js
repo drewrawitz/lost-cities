@@ -3,7 +3,7 @@ import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 
 const Game = {
-  STARTING_HAND: 30,
+  STARTING_HAND: 8,
   messages: {
     placeCard: " must place a card in an expedition or on the board"
   },
