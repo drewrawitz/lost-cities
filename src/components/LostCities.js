@@ -15,10 +15,6 @@ const Game = {
   playerTwo: {
       name: 'Haley',
       cards: []
-  },
-  deck: {
-    colors: ['red', 'yellow', 'blue', 'white', 'green'],
-    cards: ['0', '0', '0', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   }
 }
 
@@ -28,7 +24,6 @@ class LostCities extends Component {
     super(props)
 
     this.state = {
-      deck: {},
       playerOne: Game.playerOne,
       playerTwo: Game.playerTwo,
       action: null
@@ -36,35 +31,12 @@ class LostCities extends Component {
   }
 
   componentDidMount() {
-    this.getDeck()
-  }
-
-  getDeck() {
-      let deck = [];
-      let i = 0;
-
-      // loop through our arrays to create our deck
-      _.each(Game.deck.colors, function(color) {
-        _.each(Game.deck.cards, function(card) {
-          i++;
-          deck.push({ id: i, color, card, selected: false })
-        })
-      })
-
-      // randomize the deck before setting the state
-      deck = _.shuffle(deck)
-
-      // set the state with our new deck
-      this.setState({ deck }, function (){
-
-        // deal the cards
-        this.dealCards()
-      })
+      this.dealCards()
   }
 
   dealCards() {
-    const newDeck = this.state.deck.slice(Game.STARTING_HAND * 2)
-    const dealDeck = this.state.deck.slice(0, Game.STARTING_HAND * 2)
+    const newDeck = this.props.deck.slice(Game.STARTING_HAND * 2)
+    const dealDeck = this.props.deck.slice(0, Game.STARTING_HAND * 2)
     let p1 = []
     let p2 = []
 
