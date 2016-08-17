@@ -1,19 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import App from './components/App';
-import PoweredBy from './components/Powered-by';
 import LostCities from './components/LostCities';
-import About from './components/About';
 
 window.React = React;
 
 render(
-  (<Router history={hashHistory}>
+  (<Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="/about" component={About} />
-      <Route path="/lost-cities" component={LostCities} />
-      <Route path="/poweredby" component={PoweredBy} />
+      <IndexRoute component={LostCities} />
     </Route>
-  </Router>), document.getElementById('content')
+  </Router>),
+  document.getElementById('root')
 );
