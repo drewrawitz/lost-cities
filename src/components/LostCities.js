@@ -3,7 +3,7 @@ import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 
 const Game = {
-  STARTING_HAND: 8,
+  STARTING_HAND: 30,
   messages: {
     placeCard: " must place a card in an expedition or on the board"
   },
@@ -40,11 +40,13 @@ class LostCities extends Component {
 
   getDeck() {
       let deck = [];
+      let i = 0;
 
       // loop through our arrays to create our deck
       _.each(Game.deck.colors, function(color) {
         _.each(Game.deck.cards, function(card) {
-          deck.push({ color, card, selected: false })
+          i++;
+          deck.push({ id: i, color, card, selected: false })
         })
       })
 
@@ -84,9 +86,9 @@ class LostCities extends Component {
     this.state.playerTwo.cards = p2;
   }
 
-  selectCard(color, card) {
+  selectCard(id) {
       var selectedIndex = _.findIndex(this.state.cards, function(cards) {
-        return cards.color == color && cards.card == card
+        return cards.id == id
       })
 
       // if selecting the same card, lets deselect it
