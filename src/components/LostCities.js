@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
+import deckHelper from '../lib/helpers/deck';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
-
-const Game = {
-  STARTING_HAND: 8,
-  messages: {
-    placeCard: " must place a card in an expedition or on the board"
-  },
-  playerOne: {
-      name: 'Drew',
-      cards: []
-  },
-  playerTwo: {
-      name: 'Haley',
-      cards: []
-  }
-}
 
 class LostCities extends Component {
 
@@ -24,39 +10,49 @@ class LostCities extends Component {
     super(props)
 
     this.state = {
-      playerOne: Game.playerOne,
-      playerTwo: Game.playerTwo,
-      action: null
+      deck: []
     }
   }
 
   componentDidMount() {
-      this.dealCards()
+    this.buildDeck()
+  }
+
+  buildDeck() {
+    var deck = deckHelper.newShuffledDeck();
+    this.props.updateDeck(deck);
+
+    this.dealCards();
   }
 
   dealCards() {
-    const newDeck = this.props.deck.slice(Game.STARTING_HAND * 2)
-    const dealDeck = this.props.deck.slice(0, Game.STARTING_HAND * 2)
-    let p1 = []
-    let p2 = []
+    const STARTING_HAND = 8;
+
+    const newDeck = this.props.deck.slice(STARTING_HAND * 2)
+    const dealDeck = this.props.deck.slice(0, STARTING_HAND * 2)
+
+    let playerOne = {}
+    let playerTwo = {}
+
+    let p1Cards = []
+    let p2Cards = []
 
     // loop through the first 16 cards to pass them out
     for (var i = 0; i < dealDeck.length; i++) {
-        if(i % 2 === 0) { // even
-          p1.push(dealDeck[i])
-        }
-        else if(i % 2) { // odd
-          p2.push(dealDeck[i])
-        }
+      if(i % 2 === 0) { // even
+        p1Cards.push(dealDeck[i])
+      }
+      else if(i % 2) { // odd
+        p2Cards.push(dealDeck[i])
+      }
     }
 
-    this.setState({
-      deck: newDeck,
-      action: this.state.playerOne.name + Game.messages.placeCard
-    })
+    playerOne.cards = p1Cards;
+    playerTwo.cards = p2Cards;
 
-    this.state.playerOne.cards = p1;
-    this.state.playerTwo.cards = p2;
+    let players = {playerOne, playerTwo}
+
+    this.props.updateDeck(newDeck);
   }
 
   selectCard(id) {
@@ -88,21 +84,14 @@ class LostCities extends Component {
   render() {
     return (
       <div className="container">
-        <div className="lost-cities__action">{this.state.action}</div>
         <h2>Lost Cities</h2>
-        <p><strong>Player Two:</strong> {this.state.playerTwo.name}</p>
-        <LostCitiesPlayerDeck
-          cards={this.state.playerTwo.cards}
-          selectCard={this.selectCard} />
+        <p><strong>Player Two:</strong> Haley</p>
+        <LostCitiesPlayerDeck />
 
-          <LostCitiesBoard
-            cards={this.state.deck}
-            selected={this.state.selected} />
+        <LostCitiesBoard {...this.props} />
 
-          <p><strong>Player One:</strong> {this.state.playerOne.name}</p>
-          <LostCitiesPlayerDeck
-            cards={this.state.playerOne.cards}
-            selectCard={this.selectCard} />
+          <p><strong>Player One:</strong> Drew</p>
+          <LostCitiesPlayerDeck />
       </div>
     )
   }

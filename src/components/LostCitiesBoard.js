@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class LostCitiesBoard extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     var discard = null;
 
@@ -15,7 +19,7 @@ class LostCitiesBoard extends Component {
       <div className="lost-cities__board-wrapper">
         <div className="lost-cities__deck">
           <div className="lost-cities__card lost-cities__card--front"></div>
-          <div className="lost-cities__remaining">(0)</div>
+          <div className="lost-cities__remaining">({this.props.deck.length})</div>
         </div>
         <div className="lost-cities__board">
           {discard}

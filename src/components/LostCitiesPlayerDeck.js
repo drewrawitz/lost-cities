@@ -22,22 +22,7 @@ class LostCitiesPlayerDeck extends Component {
   }
 
   sortCards() {
-    if(this.state.cards.length) {
-        // custom sorting
-        var cards = this.state.cards.sort((a, b) => {
-          const colorOrder = ['yellow', 'blue', 'white', 'green', 'red'];
 
-          const aColorIndex = colorOrder.indexOf( a.color );
-          const bColorIndex = colorOrder.indexOf( b.color );
-
-          if (aColorIndex === bColorIndex)
-            return a.card - b.card;
-
-          return aColorIndex - bColorIndex;
-        });
-
-        this.setState({ cards })
-    }
   }
 
   render() {
