@@ -26,19 +26,17 @@ import Main from './Main';
   our state.posts and state.comments will be available via this.props.posts and this.props.comments
 */
 
-function mapStateToProps(state) {
-  return {
+const mapStateToProps = (state) => ({
     deck: state.deck,
     players: state.players
-  };
-}
+})
 
 /*
   This will bind our actions to dispatch (make the fire-able)
   and make the actions available via props
 */
 
-export function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 }
 
@@ -49,6 +47,6 @@ export function mapDispatchToProps(dispatch) {
   We're injecting the data at the top level and passing it down, but you can connect() any component to make the actions and the store available to you.
 */
 
-var App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 export default App;

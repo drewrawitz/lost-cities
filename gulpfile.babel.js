@@ -39,7 +39,8 @@ const customOpts = {
   entries: [paths.entry],
   debug: true,
   cache: {},
-  packageCache: {}
+  packageCache: {},
+  babelPresets: ["es2015", "react", "stage-2"]
 };
 
 const opts = Object.assign({}, watchify.args, customOpts);
@@ -70,14 +71,14 @@ gulp.task('watchify', () => {
       .pipe(reload({ stream: true }));
   }
 
-  bundler.transform(babelify)
+  bundler.transform(babelify, { presets: customOpts.babelPresets })
   .on('update', rebundle);
   return rebundle();
 });
 
 gulp.task('browserify', () => {
   browserify(paths.entry, { debug: true })
-  .transform(babelify)
+  .transform(babelify, { presets: customOpts.babelPresets })
   .bundle()
   .pipe(source(paths.bundle))
   .pipe(buffer())

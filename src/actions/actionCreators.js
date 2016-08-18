@@ -4,3 +4,11 @@ export const updateDeck = (deck) => {
       deck
     }
 }
+
+export const updatePlayersCards = (player, cards) => {
+    return {
+      type: 'UPDATE_PLAYERS_CARDS',
+      player,
+      cards
+    }
+}

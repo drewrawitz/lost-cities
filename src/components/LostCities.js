@@ -9,20 +9,15 @@ class LostCities extends Component {
   constructor(props) {
     super(props)
 
+    this.dealCards = this.dealCards.bind(this)
+
     this.state = {
       deck: []
     }
   }
 
   componentDidMount() {
-    this.buildDeck()
-  }
-
-  buildDeck() {
-    var deck = deckHelper.newShuffledDeck();
-    this.props.updateDeck(deck);
-
-    this.dealCards();
+    this.dealCards()
   }
 
   dealCards() {
@@ -30,9 +25,6 @@ class LostCities extends Component {
 
     const newDeck = this.props.deck.slice(STARTING_HAND * 2)
     const dealDeck = this.props.deck.slice(0, STARTING_HAND * 2)
-
-    let playerOne = {}
-    let playerTwo = {}
 
     let p1Cards = []
     let p2Cards = []
@@ -47,38 +39,9 @@ class LostCities extends Component {
       }
     }
 
-    playerOne.cards = p1Cards;
-    playerTwo.cards = p2Cards;
-
-    let players = {playerOne, playerTwo}
-
+    this.props.updatePlayersCards("playerOne", p1Cards);
+    this.props.updatePlayersCards("playerTwo", p2Cards);
     this.props.updateDeck(newDeck);
-  }
-
-  selectCard(id) {
-      var selectedIndex = _.findIndex(this.state.cards, function(cards) {
-        return cards.id == id
-      })
-
-      // if selecting the same card, lets deselect it
-      if(this.state.cards[selectedIndex].selected) {
-        this.state.cards[selectedIndex].selected = false
-        this.setState({ selected: {} })
-
-        return;
-      }
-
-      // make sure to remove any selected cards
-      _.each(this.state.cards, function(cards) {
-        cards.selected = false;
-      });
-
-      this.state.cards[selectedIndex].selected = true;
-
-      this.setState({
-        cards: this.state.cards,
-        selected: this.state.cards[selectedIndex]
-      })
   }
 
   render() {
