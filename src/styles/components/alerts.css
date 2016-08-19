@@ -10,6 +10,6 @@
 }
 
 .c-fixed-alert--error {
-  background-color: darkred;
+  background-color: rgba(#cc1e1e, 0.75);
   color: white;
 }

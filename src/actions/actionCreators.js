@@ -27,3 +27,10 @@ export const updateTurn = (turn) => {
     turn
   }
 }
+
+export const updateAlert = (alert) => {
+  return {
+    type: 'UPDATE_ALERT',
+    alert
+  }
+}

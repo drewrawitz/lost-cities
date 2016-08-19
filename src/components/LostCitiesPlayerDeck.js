@@ -3,20 +3,18 @@ import _ from 'underscore';
 import classNames from 'classnames';
 import deckHelper from '../lib/helpers/deck';
 
-const ERROR_MESSAGE = 'Please wait your turn.';
-
 class LostCitiesPlayerDeck extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      error: null
-    }
   }
 
   waitTurn() {
-    this.setState({ error: ERROR_MESSAGE }, () => {
+    const ERROR_MESSAGE = 'Please wait your turn.';
+
+    this.props.updateAlert({
+      type: 'error',
+      message: ERROR_MESSAGE
     })
   }
 
@@ -30,14 +28,19 @@ class LostCitiesPlayerDeck extends Component {
       {'lost-cities__card-list--has-selection': !_.isEmpty(playersObj.selected)}
     );
 
-    let errorMessage = null;
-    if(this.state.error) {
-      errorMessage = <div className="c-fixed-alert c-fixed-alert--error">{this.state.error}</div>
+    let alertMessage = null;
+    let alertClasses = classNames(
+      'c-fixed-alert',
+      {'c-fixed-alert--error': this.props.alert && this.props.alert.type === 'error'}
+    );
+
+    if(this.props.alert) {
+      alertMessage = <div className={alertClasses}>{this.props.alert.message}</div>
     }
 
     return (
       <div className="lost-cities__card-wrapper">
-        {errorMessage}
+        {alertMessage}
         <ul className={cardWrapperClasses}>
         {_.map(sortedPlayerObj, (obj) => {
           var classes = classNames(

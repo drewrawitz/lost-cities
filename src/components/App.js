@@ -29,7 +29,8 @@ import Main from './Main';
 const mapStateToProps = (state) => ({
     deck: state.deck,
     players: state.players,
-    turn: state.turn
+    turn: state.turn,
+    alert: state.alert
 })
 
 /*

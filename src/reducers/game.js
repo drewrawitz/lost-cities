@@ -42,8 +42,18 @@ const turn = (state = {}, action) => {
    }
 }
 
+const alert = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_ALERT':
+      return Object.assign({}, state, action.alert)
+     default:
+       return state
+   }
+}
+
 export default {
     deck,
     players,
-    turn
+    turn,
+    alert
 }
