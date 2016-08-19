@@ -12,3 +12,11 @@ export const updatePlayersCards = (player, cards) => {
       cards
     }
 }
+
+export const selectCard = (player, card) => {
+  return {
+    type: 'SELECT_CARD',
+    player,
+    card
+  }
+}

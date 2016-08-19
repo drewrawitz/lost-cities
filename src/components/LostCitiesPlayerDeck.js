@@ -20,7 +20,7 @@ class LostCitiesPlayerDeck extends Component {
 
     let cardWrapperClasses = classNames(
       'lost-cities__card-wrapper',
-      {'lost-cities__card-wrapper--has-selection': false}
+      {'lost-cities__card-wrapper--has-selection': !_.isEmpty(playersObj.selected)}
     );
 
     return (
@@ -29,10 +29,10 @@ class LostCitiesPlayerDeck extends Component {
         var classes = classNames(
           'lost-cities__card',
           obj.color + obj.card,
-          {'lost-cities__card--is-selected': obj.selected}
+          {'lost-cities__card--is-selected': playersObj.selected.id === obj.id}
         );
 
-        return <li key={obj.id} className={classes}></li>
+        return <li key={obj.id} onClick={this.props.selectCard.bind(this, player, obj)} className={classes}></li>
       })}
       </ul>
     )
