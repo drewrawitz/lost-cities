@@ -29,7 +29,7 @@ module.exports = {
   sortPlayersCards(cards) {
     if(cards.length) {
       // custom sorting
-      sortedCards = cards.sort((a, b) => {
+      let sortedCards = cards.sort((a, b) => {
         const colorOrder = ['yellow', 'blue', 'white', 'green', 'red'];
 
         const aColorIndex = colorOrder.indexOf( a.color );

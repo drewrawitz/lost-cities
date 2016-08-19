@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
-import deckHelper from '../lib/helpers/deck';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
 
@@ -49,12 +48,16 @@ class LostCities extends Component {
       <div className="container">
         <h2>Lost Cities</h2>
         <p><strong>Player Two:</strong> Haley</p>
-        <LostCitiesPlayerDeck />
+        <LostCitiesPlayerDeck
+          {...this.props}
+          player="playerTwo" />
 
         <LostCitiesBoard {...this.props} />
 
           <p><strong>Player One:</strong> Drew</p>
-          <LostCitiesPlayerDeck />
+          <LostCitiesPlayerDeck
+            {...this.props}
+            player="playerOne" />
       </div>
     )
   }

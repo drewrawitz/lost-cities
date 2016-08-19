@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
 import classNames from 'classnames';
+import deckHelper from '../lib/helpers/deck';
 
 class LostCitiesPlayerDeck extends Component {
 
@@ -8,39 +9,30 @@ class LostCitiesPlayerDeck extends Component {
     super(props)
 
     this.state = {
-      cards: {},
-      selected: {}
+
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.cards !== this.state.cards) {
-      this.setState({ cards: nextProps.cards}, function() {
-        this.sortCards();
-      });
-    }
-  }
-
-  sortCards() {
-
   }
 
   render() {
-    var cardWrapperClasses = classNames(
+    let player = this.props.player
+    let playersObj = this.props.players[player]
+    let sortedPlayerObj = deckHelper.sortPlayersCards(playersObj.cards)
+
+    let cardWrapperClasses = classNames(
       'lost-cities__card-wrapper',
-      {'lost-cities__card-wrapper--has-selection': !_.isEmpty(this.state.selected)}
+      {'lost-cities__card-wrapper--has-selection': false}
     );
 
     return (
       <ul className={cardWrapperClasses}>
-      {_.map(this.state.cards, (obj) => {
+      {_.map(sortedPlayerObj, (obj) => {
         var classes = classNames(
           'lost-cities__card',
           obj.color + obj.card,
           {'lost-cities__card--is-selected': obj.selected}
         );
 
-        return <li key={obj.id} onClick={this.props.selectCard.bind(this, obj.id)} className={classes}></li>
+        return <li key={obj.id} className={classes}></li>
       })}
       </ul>
     )
