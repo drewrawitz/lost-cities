@@ -8,7 +8,8 @@ import players from './data/players';
 
 const defaultState = {
   deck,
-  players
+  players,
+  turn: null
 };
 
 const enhancers = compose(

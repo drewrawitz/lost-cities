@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
+import helpers from '../lib/helpers';
 
 class LostCities extends Component {
 
@@ -38,9 +39,10 @@ class LostCities extends Component {
       }
     }
 
-    this.props.updatePlayersCards("playerOne", p1Cards);
-    this.props.updatePlayersCards("playerTwo", p2Cards);
+    this.props.updatePlayersCards('playerOne', p1Cards);
+    this.props.updatePlayersCards('playerTwo', p2Cards);
     this.props.updateDeck(newDeck);
+    this.props.updateTurn(helpers.game.randomTurn())
   }
 
   render() {

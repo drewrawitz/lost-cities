@@ -20,3 +20,10 @@ export const selectCard = (player, card) => {
     card
   }
 }
+
+export const updateTurn = (turn) => {
+  return {
+    type: 'UPDATE_TURN',
+    turn
+  }
+}

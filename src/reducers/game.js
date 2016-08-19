@@ -1,5 +1,14 @@
 import _ from 'underscore';
 
+const deck = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_DECK':
+       return Object.assign([], action.deck)
+     default:
+       return state
+  }
+}
+
 const players = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_PLAYERS_CARDS':
@@ -19,9 +28,22 @@ const players = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.player]: selectPlayerObject
       });
-     default:
-       return state
+    default:
+      return state
   }
 }
 
-export default players
+const turn = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_TURN':
+      return action.turn
+     default:
+       return state
+   }
+}
+
+export default {
+    deck,
+    players,
+    turn
+}
