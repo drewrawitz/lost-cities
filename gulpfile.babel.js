@@ -12,6 +12,7 @@ import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
+import rucksack from 'rucksack-css';
 import nested from 'postcss-nested';
 import postimport from 'postcss-import';
 import vars from 'postcss-simple-vars';
@@ -26,10 +27,12 @@ import ghPages from 'gulp-gh-pages';
 const paths = {
   bundle: 'app.js',
   entry: 'src/Index.js',
+  mainCss: 'src/styles/main.css',
   srcCss: 'src/**/*.css',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   dist: 'dist',
+  distCss: 'dist/styles',
   distJs: 'dist/js',
   distImg: 'dist/images',
   distDeploy: './dist/**/*'
@@ -89,11 +92,11 @@ gulp.task('browserify', () => {
 });
 
 gulp.task('styles', () => {
-  gulp.src(paths.srcCss)
+  gulp.src(paths.mainCss)
   .pipe(sourcemaps.init())
-  .pipe(postcss([postimport, vars, extend, nested, autoprefixer, cssnano]))
+  .pipe(postcss([postimport, rucksack, vars, extend, nested, autoprefixer, cssnano]))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(paths.dist))
+  .pipe(gulp.dest(paths.distCss))
   .pipe(reload({ stream: true }));
 });
 

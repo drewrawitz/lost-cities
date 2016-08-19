@@ -1,0 +1,15 @@
+.c-fixed-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.c-fixed-alert--error {
+  background-color: darkred;
+  color: white;
+}

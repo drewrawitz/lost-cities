@@ -10,15 +10,19 @@
   margin: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
 }
 
-.lost-cities__card-wrapper {
+.lost-cities__card-list {
   margin: 0;
   padding: 15px;
   background: rgba(255,255,255, 0.3);
 }
 
-.lost-cities__card-wrapper--has-selection {
+.lost-cities__card-list--has-selection {
   .lost-cities__card {
     opacity: 0.6;
   }
