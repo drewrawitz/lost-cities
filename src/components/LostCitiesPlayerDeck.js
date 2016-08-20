@@ -12,10 +12,7 @@ class LostCitiesPlayerDeck extends Component {
   waitTurn() {
     const ERROR_MESSAGE = 'Please wait your turn.';
 
-    this.props.updateAlert({
-      type: 'error',
-      message: ERROR_MESSAGE
-    })
+    this.props.updateAlertCallback('error', ERROR_MESSAGE)
   }
 
   render() {

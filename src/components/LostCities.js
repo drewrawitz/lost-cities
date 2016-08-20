@@ -48,6 +48,7 @@ class LostCities extends Component {
   render() {
     return (
       <div className="container">
+        <div className="lost-cities__action">Drew must place a card in an expedition or on the board</div>
         <h2>Lost Cities</h2>
         <p><strong>Player Two:</strong> Haley</p>
         <LostCitiesPlayerDeck

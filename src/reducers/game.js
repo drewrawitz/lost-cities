@@ -45,7 +45,12 @@ const turn = (state = {}, action) => {
 const alert = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_ALERT':
-      return Object.assign({}, state, action.alert)
+      return Object.assign({}, state, {
+        type: action.alert,
+        message: action.message
+      })
+    case 'DELETE_ALERT':
+      return Object.assign({}, state, null)
      default:
        return state
    }

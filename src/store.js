@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router'
 import rootReducer from './reducers/index';
@@ -13,11 +14,14 @@ const defaultState = {
   alert: null
 };
 
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
-
-const store = createStore(rootReducer, defaultState, enhancers);
+const store = createStore(
+  rootReducer,
+  defaultState,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
+  )
+)
 
 // we export history because we need it in `reduxstagram.js` to feed into <Router>
 export const history = syncHistoryWithStore(browserHistory, store);

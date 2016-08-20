@@ -28,9 +28,23 @@ export const updateTurn = (turn) => {
   }
 }
 
-export const updateAlert = (alert) => {
+export const updateAlert = (alert, message) => {
+  console.log('update');
   return {
     type: 'UPDATE_ALERT',
-    alert
+    alert,
+    message
+  }
+}
+
+export const updateAlertCallback = (alert, message) => {
+  return function(dispatch) {
+    return dispatch(updateAlert(alert, message));
+  }
+}
+
+export const deleteAlert = () => {
+  return {
+    type: 'DELETE_ALERT'
   }
 }
