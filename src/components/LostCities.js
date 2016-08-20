@@ -43,9 +43,14 @@ class LostCities extends Component {
   }
 
   render() {
+    let alert = null;
+    if(this.props.alert) {
+      alert = <Alert {...this.props} />
+    }
+
     return (
       <div className="container">
-        <Alert {...this.props} />
+        {alert}  
         <div className="lost-cities__action">Drew must place a card in an expedition or on the board</div>
         <h2>Lost Cities</h2>
         <p><strong>Player Two:</strong> Haley</p>

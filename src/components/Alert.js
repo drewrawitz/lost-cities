@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class Alert extends Component {
   render() {
@@ -10,10 +11,14 @@ class Alert extends Component {
     );
 
     if(this.props.alert) {
-      alertMarkup = <div className={alertClasses}>{this.props.alert.message}</div>
+      alertMarkup = (
+        <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionAppearTimeout={300}>
+          <div className={alertClasses}>{this.props.alert.message}</div>
+        </ReactCSSTransitionGroup>
+      )
     }
 
-    return (this.props.alert) ? alertMarkup : null;
+    return (this.props.alert) ? alertMarkup : null
   }
 }
 
