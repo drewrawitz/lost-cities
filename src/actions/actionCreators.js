@@ -28,23 +28,25 @@ export const updateTurn = (turn) => {
   }
 }
 
-export const updateAlert = (alert, message) => {
-  console.log('update');
+export const showAlert = (alert, message) => {
   return {
-    type: 'UPDATE_ALERT',
+    type: 'SHOW_ALERT',
     alert,
     message
   }
 }
 
-export const updateAlertCallback = (alert, message) => {
-  return function(dispatch) {
-    return dispatch(updateAlert(alert, message));
+export const updateAlert = (alert, message) => {
+  return (dispatch) => {
+    dispatch(showAlert(alert, message));
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 5000);
   }
 }
 
-export const deleteAlert = () => {
+export const hideAlert = () => {
   return {
-    type: 'DELETE_ALERT'
+    type: 'HIDE_ALERT'
   }
 }
