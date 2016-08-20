@@ -10,11 +10,9 @@ class LostCitiesPlayerDeck extends Component {
   }
 
   waitTurn() {
-    const ERROR_MESSAGE = 'Please wait your turn.'
-
     // if no alert is present, show the error message
     if(!this.props.alert) {
-      this.props.updateAlert('error', ERROR_MESSAGE)
+      this.props.updateAlert('error', 'Please wait your turn.')
     }
   }
 
@@ -28,19 +26,8 @@ class LostCitiesPlayerDeck extends Component {
       {'lost-cities__card-list--has-selection': !_.isEmpty(playersObj.selected)}
     );
 
-    let alertMessage = null;
-    let alertClasses = classNames(
-      'c-fixed-alert',
-      {'c-fixed-alert--error': this.props.alert && this.props.alert.type === 'error'}
-    );
-
-    if(this.props.alert) {
-      alertMessage = <div className={alertClasses}>{this.props.alert.message}</div>
-    }
-
     return (
       <div className="lost-cities__card-wrapper">
-        {alertMessage}
         <ul className={cardWrapperClasses}>
         {_.map(sortedPlayerObj, (obj) => {
           var classes = classNames(

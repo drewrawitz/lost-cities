@@ -3,6 +3,7 @@ import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
 import helpers from '../lib/helpers';
+import Alert from './Alert';
 
 class LostCities extends Component {
 
@@ -10,10 +11,6 @@ class LostCities extends Component {
     super(props)
 
     this.dealCards = this.dealCards.bind(this)
-
-    this.state = {
-      deck: []
-    }
   }
 
   componentDidMount() {
@@ -48,6 +45,7 @@ class LostCities extends Component {
   render() {
     return (
       <div className="container">
+        <Alert {...this.props} />
         <div className="lost-cities__action">Drew must place a card in an expedition or on the board</div>
         <h2>Lost Cities</h2>
         <p><strong>Player Two:</strong> Haley</p>
