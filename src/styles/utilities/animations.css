@@ -1,0 +1,21 @@
+/* ===========================
+  Fade
+/* =========================== */
+
+.transition--fade-appear {
+  opacity: 0.01;
+}
+
+.transition--fade-appear.transition--fade-appear-active {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.transition--fade-leave {
+  opacity: 1;
+}
+
+.transition--fade-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 0.3s ease-in;
+}

@@ -1,5 +1,6 @@
 @import 'normalize';
 @import 'default';
+@import 'utilities/animations';
 @import 'components/alerts';
 @import 'components/cards';
 @import 'components/board';
