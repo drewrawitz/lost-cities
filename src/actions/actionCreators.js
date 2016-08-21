@@ -28,6 +28,13 @@ export const updateTurn = (turn) => {
   }
 }
 
+export const updateAction = (action) => {
+  return {
+    type: 'UPDATE_ACTION',
+    action
+  }
+}
+
 export const showAlert = (alert, message) => {
   return {
     type: 'SHOW_ALERT',

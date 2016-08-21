@@ -33,6 +33,15 @@ const players = (state = {}, action) => {
   }
 }
 
+const action = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_ACTION':
+      return (action.action) ? action.action : state
+    default:
+      return state
+  }
+}
+
 const turn = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_TURN':
@@ -60,5 +69,6 @@ export default {
     deck,
     players,
     turn,
+    action,
     alert
 }

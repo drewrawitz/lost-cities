@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
   players: game.players,
   turn: game.turn,
   alert: game.alert,
+  action: game.action,
   routing: routerReducer
 });
 

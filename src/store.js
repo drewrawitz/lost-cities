@@ -11,7 +11,8 @@ const defaultState = {
   deck,
   players,
   turn: null,
-  alert: null
+  alert: null,
+  action: 'place'
 };
 
 const store = createStore(

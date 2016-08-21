@@ -7,6 +7,7 @@ class LostCitiesBoard extends Component {
   constructor(props) {
     super(props)
 
+    this.discardCard = this.discardCard.bind(this)
     this.discardMouseOver = this.discardMouseOver.bind(this)
     this.discardMouseOut = this.discardMouseOut.bind(this)
 
@@ -22,6 +23,13 @@ class LostCitiesBoard extends Component {
 
   discardMouseOut() {
     this.setState({ hovered: false })
+  }
+
+  discardCard() {
+    // card has been discarded, we now need to take a card from the board
+    this.props.updateAction('take')
+
+    console.log('discarded');
   }
 
   render() {
@@ -46,7 +54,7 @@ class LostCitiesBoard extends Component {
             <div className={tooltipClasses}>
               <span className="lost-cities__tooltip">Discard</span>
             </div>
-            <div className="lost-cities__discard" onMouseOver={this.discardMouseOver} onMouseOut={this.discardMouseOut}></div>
+            <div className="lost-cities__discard" onClick={this.discardCard} onMouseOver={this.discardMouseOver} onMouseOut={this.discardMouseOut}></div>
           </div>
         </ReactCSSTransitionGroup>
       )
