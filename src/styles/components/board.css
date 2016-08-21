@@ -14,12 +14,28 @@
 .lost-cities__discard-wrapper {
   position: absolute;
   height: 131px;
-  width: 93px;
+  width: 98px;
   cursor: pointer;
 
   &--yellow {
     top: 27px;
-    left: 32px;
+    left: 31px;
+  }
+  &--blue {
+    top: 25px;
+    left: 147px;
+  }
+  &--white {
+    top: 24px;
+    left: 274px;
+  }
+  &--green {
+    top: 20px;
+    left: 399px;
+  }
+  &--red {
+    top: 18px;
+    left: 521px;
   }
 }
 
@@ -42,6 +58,12 @@
   z-index: 1;
   width: 100%;
   text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.is-shown {
+    opacity: 1;
+  }
 }
 
 .lost-cities__tooltip {

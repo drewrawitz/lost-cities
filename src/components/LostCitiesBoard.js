@@ -1,19 +1,56 @@
 import React, { Component } from 'react';
+import _ from 'underscore';
+import classNames from 'classnames';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class LostCitiesBoard extends Component {
   constructor(props) {
     super(props)
+
+    this.discardMouseOver = this.discardMouseOver.bind(this)
+    this.discardMouseOut = this.discardMouseOut.bind(this)
+
+    this.state = {
+      selected: {},
+      hovered: false
+    }
+  }
+
+  discardMouseOver() {
+    this.setState({ hovered: true })
+  }
+
+  discardMouseOut() {
+    this.setState({ hovered: false })
   }
 
   render() {
-    var discard = null;
+    let discard = null
+    let turn = this.props.turn
+    let selected = (this.props.players[turn]) ? this.props.players[turn].selected : null
 
-    discard = <div className="lost-cities__discard-wrapper lost-cities__discard-wrapper--yellow">
-      <div className="lost-cities__tooltip-wrapper">
-        <span className="lost-cities__tooltip">Discard</span>
-      </div>
-      <div className="lost-cities__discard"></div>
-    </div>;
+    if(!_.isEmpty(selected)) {
+      let discardWrapperClasses = classNames(
+        'lost-cities__discard-wrapper',
+        'lost-cities__discard-wrapper--' + selected.color
+      )
+
+      let tooltipClasses = classNames(
+        'lost-cities__tooltip-wrapper',
+        {'is-shown': this.state.hovered}
+      )
+
+      discard = (
+        <ReactCSSTransitionGroup transitionName="transition--fade" transitionAppear={true} transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionAppearTimeout={300}>
+          <div className={discardWrapperClasses}>
+            <div className={tooltipClasses}>
+              <span className="lost-cities__tooltip">Discard</span>
+            </div>
+            <div className="lost-cities__discard" onMouseOver={this.discardMouseOver} onMouseOut={this.discardMouseOut}></div>
+          </div>
+        </ReactCSSTransitionGroup>
+      )
+    }
 
     return (
       <div className="lost-cities__board-wrapper">
