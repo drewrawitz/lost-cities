@@ -45,7 +45,7 @@
   }
 }
 
-.lost-cities__discard {
+.lost-cities__discard-highlight {
   background: rgba(#fff, 0.5);
   border: 4px solid rgba(#000, 0.7);
   border-radius: 15px;

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'; // we need this for react-router
 import game from './game'
+import board from './board'
 
 // Combine all our reducers togeher
 const rootReducer = combineReducers({
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   turn: game.turn,
   alert: game.alert,
   action: game.action,
+  discarded: board.discarded,
   routing: routerReducer
 });
 

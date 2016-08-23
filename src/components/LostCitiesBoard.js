@@ -36,7 +36,11 @@ class LostCitiesBoard extends Component {
             <div className="lost-cities__tooltip-wrapper">
               <span className="lost-cities__tooltip">Discard</span>
             </div>
-            <div className="lost-cities__discard" onClick={this.discardCard}></div>
+            <div className="lost-cities__discard-highlight" onClick={this.discardCard}>
+              <ul className="lost-cities__discard-pile">
+
+              </ul>
+            </div>
           </div>
         </ReactCSSTransitionGroup>
       )

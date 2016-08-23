@@ -31,6 +31,7 @@ const mapStateToProps = (state) => ({
     players: state.players,
     turn: state.turn,
     alert: state.alert,
+    discarded: state.discarded,
     action: state.action
 })
 

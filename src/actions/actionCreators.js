@@ -57,3 +57,10 @@ export const hideAlert = () => {
     type: 'HIDE_ALERT'
   }
 }
+
+export const discardCard = (card) => {
+  return {
+    type: 'DISCARD_CARD',
+    card
+  }
+}

@@ -6,13 +6,15 @@ import rootReducer from './reducers/index';
 
 import deck from './data/deck';
 import players from './data/players';
+import board from './data/board';
 
 const defaultState = {
   deck,
   players,
   turn: null,
   alert: null,
-  action: 'place'
+  action: 'place',
+  discarded: board.discarded
 };
 
 const store = createStore(
