@@ -2,24 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
-/*
-  Components
-  This is where the actual interface / view comes into play
-  Everything is in Main - so we import that one
-*/
-
 import Main from './Main';
-
-/*
-  Mapping
-  This is where the magic of redux comes in.
-  We need a way to make
-  1. our state (our data)
-  2. our 'dispatch' functions
-  available to the <Main /> component.
-  We will surface state and functions via props (this.props.whatever)
-*/
-
 
 /*
   Here we specify which state needs to be made avaialble to the component
@@ -43,7 +26,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 }
-
 
 /*
   Here we create an <App/> component which is just our <Main/> component with it's props

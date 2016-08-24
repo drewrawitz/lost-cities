@@ -26,7 +26,6 @@ const store = createStore(
   )
 )
 
-// we export history because we need it in `reduxstagram.js` to feed into <Router>
 export const history = syncHistoryWithStore(browserHistory, store);
 
 export default store;
