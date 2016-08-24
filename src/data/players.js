@@ -1,12 +1,12 @@
 let players = {
   playerOne: {
-    name: null,
+    name: 'Drew',
     score: 0,
     cards: [],
     selected: {}
   },
   playerTwo: {
-    name: null,
+    name: 'Haley',
     score: 0,
     cards: [],
     selected: {}

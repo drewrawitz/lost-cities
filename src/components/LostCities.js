@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
+import classNames from 'classnames';
 import helpers from '../lib/helpers';
 import Alert from './Alert';
 
@@ -48,19 +49,47 @@ class LostCities extends Component {
       alert = <Alert {...this.props} />
     }
 
+    let action = null;
+    let player = null;
+
+    if(this.props.turn) {
+      player = this.props.players[this.props.turn].name
+    }
+
+    if(this.props.action === 'place') {
+      action = helpers.messages.PLACE_MESSAGE
+    } else if(this.props.action === 'take') {
+      action = helpers.messages.TAKE_MESSAGE
+    }
+
+    /* Class Names */
+    let playerOneClasses = classNames(
+      'lost-cities__player',
+      {'lost-cities__player--is-active': this.props.turn === 'playerOne'}
+    )
+
+    let playerTwoClasses = classNames(
+      'lost-cities__player',
+      {'lost-cities__player--is-active': this.props.turn === 'playerTwo'}
+    )
+
     return (
       <div className="container">
         {alert}
-        <div className="lost-cities__action">Drew must place a card in an expedition or on the board</div>
+        <div className="lost-cities__action">{player} {action}</div>
         <h2>Lost Cities</h2>
-        <p><strong>Player Two:</strong> Haley</p>
+        <span className={playerTwoClasses}>
+          <strong>Player Two:</strong> {this.props.players['playerTwo'].name}
+        </span>
         <LostCitiesPlayerDeck
           {...this.props}
           player="playerTwo" />
 
         <LostCitiesBoard {...this.props} />
 
-          <p><strong>Player One:</strong> Drew</p>
+          <span className={playerOneClasses}>
+            <strong>Player One:</strong> {this.props.players['playerOne'].name}
+          </span>
           <LostCitiesPlayerDeck
             {...this.props}
             player="playerOne" />

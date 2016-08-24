@@ -5,6 +5,16 @@
   height: 183px;
 }
 
+.lost-cities__player {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px;
+
+  &--is-active {
+    background-color: yellow;
+  }
+}
+
 .lost-cities__board-wrapper {
   display: flex;
   align-items: center;

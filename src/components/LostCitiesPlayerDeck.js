@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
 import classNames from 'classnames';
-import deckHelper from '../lib/helpers/deck';
+import helpers from '../lib/helpers';
 
 class LostCitiesPlayerDeck extends Component {
 
@@ -14,7 +14,7 @@ class LostCitiesPlayerDeck extends Component {
       case "place":
         return this.props.selectCard(player, obj)
       case "take":
-        return this.props.updateAlert('error', 'You must pick up a card from the board.')
+        return this.props.updateAlert('error', 'You' + helpers.messages.TAKE_MESSAGE)
       default:
         return
     }
@@ -30,7 +30,7 @@ class LostCitiesPlayerDeck extends Component {
   render() {
     let player = this.props.player
     let playersObj = this.props.players[player]
-    let sortedPlayerObj = deckHelper.sortPlayersCards(playersObj.cards)
+    let sortedPlayerObj = helpers.deck.sortPlayersCards(playersObj.cards)
 
     let cardWrapperClasses = classNames(
       'lost-cities__card-list',
