@@ -28,6 +28,11 @@ const players = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.player]: selectPlayerObject
       });
+    case 'DESELECT_CARD':
+      const deselectedObject = Object.assign(state[action.player], { selected: {} });
+      return Object.assign({}, state, {
+        [action.player]: deselectedObject
+      });
     default:
       return state
   }

@@ -21,6 +21,13 @@ export const selectCard = (player, card) => {
   }
 }
 
+export const deselectCard = (player) => {
+  return {
+    type: 'DESELECT_CARD',
+    player
+  }
+}
+
 export const updateTurn = (turn) => {
   return {
     type: 'UPDATE_TURN',
@@ -58,9 +65,18 @@ export const hideAlert = () => {
   }
 }
 
-export const discardCard = (card) => {
+export const discard = (player, color, card) => {
+  return (dispatch) => {
+    dispatch(discardCard(color, card));
+    dispatch(deselectCard(player));
+    dispatch(updateAction('take'));
+  }
+}
+
+export const discardCard = (color, card) => {
   return {
     type: 'DISCARD_CARD',
+    color,
     card
   }
 }

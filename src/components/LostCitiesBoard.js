@@ -6,17 +6,10 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 class LostCitiesBoard extends Component {
   constructor(props) {
     super(props)
-
-    this.discardCard = this.discardCard.bind(this)
-
-    this.state = {
-      selected: {}
-    }
   }
 
-  discardCard() {
-    // card has been discarded, we now need to take a card from the board
-    this.props.updateAction('take')
+  discardCard(color, card) {
+    this.props.discard(this.props.turn, color, card)
   }
 
   render() {
@@ -36,10 +29,8 @@ class LostCitiesBoard extends Component {
             <div className="lost-cities__tooltip-wrapper">
               <span className="lost-cities__tooltip">Discard</span>
             </div>
-            <div className="lost-cities__discard-highlight" onClick={this.discardCard}>
-              <ul className="lost-cities__discard-pile">
-
-              </ul>
+            <div className="lost-cities__discard-highlight" onClick={this.discardCard.bind(this, selected.color, selected)}>
+              <ul className="lost-cities__discard-pile"></ul>
             </div>
           </div>
         </ReactCSSTransitionGroup>
