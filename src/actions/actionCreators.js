@@ -21,6 +21,36 @@ export const removeCardFromPlayer = (player, card) => {
     }
 }
 
+export const switchTurns = (player) => {
+    return {
+      type: 'SWITCH_TURNS',
+      player
+    }
+}
+
+export const drawCard = (player, card) => {
+  return (dispatch) => {
+    dispatch(drawPlayerCard(player, card));
+    dispatch(removeCardFromDeck());
+    dispatch(updateAction('place'));
+    dispatch(switchTurns(player));
+  }
+}
+
+export const removeCardFromDeck = () => {
+    return {
+      type: 'REMOVE_CARD_FROM_DECK'
+    }
+}
+
+export const drawPlayerCard = (player, card) => {
+  return {
+    type: 'DRAW_CARD',
+    player,
+    card
+  }
+}
+
 export const selectCard = (player, card) => {
   return {
     type: 'SELECT_CARD',

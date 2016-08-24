@@ -9,7 +9,7 @@ class LostCitiesBoard extends Component {
   }
 
   drawCard() {
-    console.log('draw card')
+    this.props.drawCard(this.props.turn, this.props.deck[0])
   }
 
   discardCard(color, card) {

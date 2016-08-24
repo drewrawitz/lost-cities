@@ -4,6 +4,11 @@ const deck = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_DECK':
        return Object.assign([], action.deck)
+    case 'REMOVE_CARD_FROM_DECK':
+      let newCards = [
+        ...state.slice(1)
+      ]
+      return newCards
      default:
        return state
   }
@@ -43,6 +48,12 @@ const players = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.player]: deselectedObject
       });
+    case 'DRAW_CARD':
+      const newPlayerCards = [...state[action.player].cards, action.card]
+      const newPlayerCardsObj = Object.assign(state[action.player], { cards: newPlayerCards });
+      return Object.assign({}, state, {
+        [action.player]: newPlayerCardsObj
+      });
     default:
       return state
   }
@@ -61,8 +72,17 @@ const turn = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_TURN':
       return action.turn
-     default:
-       return state
+    case 'SWITCH_TURNS':
+      switch (action.player) {
+        case 'playerOne':
+          return 'playerTwo'
+        case 'playerTwo':
+          return 'playerOne'
+        default:
+          return
+      }
+    default:
+      return state
    }
 }
 
