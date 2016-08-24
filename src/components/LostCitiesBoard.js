@@ -50,6 +50,17 @@ class LostCitiesBoard extends Component {
         </ReactCSSTransitionGroup>
       )
 
+      let discardPile = []
+      if(self.props.discarded[pile]) {
+        _.each(self.props.discarded[pile].cards, function(card) {
+          if(!_.isEmpty(card)) {
+            let cardClass = "lost-cities__card lost-cities__card--stacked " + card.color + card.card
+            let cardMarkup = <li className={cardClass}></li>
+            discardPile.push(cardMarkup)
+          }
+        })
+      }
+
       if(pile === selected.color) {
         pileHighlight = highlightMarkup
         deckHighlight = null
@@ -65,7 +76,7 @@ class LostCitiesBoard extends Component {
         <div className={discardPileClasses} key={`discard-${pile}`}>
           {pileHighlight}
           {deckHighlight}
-          <ul className="lost-cities__discard-pile"></ul>
+          <ul className="lost-cities__discard-pile">{discardPile}</ul>
         </div>
       )
 
