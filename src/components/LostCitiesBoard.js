@@ -8,17 +8,23 @@ class LostCitiesBoard extends Component {
     super(props)
 
     this.state = {
-      markup: null,
-      test: null
+      lastDiscardedColor: null,
+      markup: null
     }
   }
 
-  drawCard() {
-    this.props.drawCard(this.props.turn, this.props.deck[0])
+  drawCard(pile) {
+    if(pile === 'deck') {
+      this.props.drawCard(this.props.turn, this.props.deck[0])
+    } else {
+      let lastDiscardedIndex = this.props.discarded[pile].cards.length - 1
+      this.props.takeCardFromPile(this.props.turn, this.props.discarded[pile].cards[lastDiscardedIndex], pile)
+    }
   }
 
   discardCard(color, card) {
     this.props.discard(this.props.turn, color, card)
+    this.setState({ lastDiscardedColor: color })
   }
 
   render() {
@@ -42,7 +48,7 @@ class LostCitiesBoard extends Component {
 
       highlightMarkup = (
         <ReactCSSTransitionGroup transitionName="transition--fade" transitionAppear={true} transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionAppearTimeout={300}>
-          <div className="lost-cities__discard-highlight" onClick={(action === 'take') ? self.drawCard.bind(self) : self.discardCard.bind(self, selected.color, selected)}>
+          <div className="lost-cities__discard-highlight" onClick={(action === 'take') ? self.drawCard.bind(self, pile) : self.discardCard.bind(self, selected.color, selected)}>
             <div className="lost-cities__tooltip-wrapper">
               <span className="lost-cities__tooltip">{tooltip}</span>
             </div>
@@ -51,11 +57,16 @@ class LostCitiesBoard extends Component {
       )
 
       let discardPile = []
+      let pickupHighlights = null
+
       if(self.props.discarded[pile]) {
         _.each(self.props.discarded[pile].cards, function(card) {
           if(!_.isEmpty(card)) {
+            if(action === 'take' && card.color !== self.state.lastDiscardedColor) {
+              pickupHighlights = highlightMarkup
+            }
             let cardClass = "lost-cities__card lost-cities__card--stacked " + card.color + card.card
-            let cardMarkup = <li className={cardClass}></li>
+            let cardMarkup = <li key={card.id} className={cardClass}></li>
             discardPile.push(cardMarkup)
           }
         })
@@ -76,7 +87,8 @@ class LostCitiesBoard extends Component {
         <div className={discardPileClasses} key={`discard-${pile}`}>
           {pileHighlight}
           {deckHighlight}
-          <ul className="lost-cities__discard-pile">{discardPile}</ul>
+          {pickupHighlights}
+          {(discardPile.length > 0) ? <ul className="lost-cities__discard-pile">{discardPile}</ul> : null}
         </div>
       )
 

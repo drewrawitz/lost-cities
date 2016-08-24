@@ -37,6 +37,22 @@ export const drawCard = (player, card) => {
   }
 }
 
+export const takeCardFromPile = (player, card, pile) => {
+  return (dispatch) => {
+    dispatch(drawPlayerCard(player, card));
+    dispatch(removeCardFromDiscardPile(pile));
+    dispatch(updateAction('place'));
+    dispatch(switchTurns(player));
+  }
+}
+
+export const removeCardFromDiscardPile = (pile) => {
+    return {
+      type: 'REMOVE_CARD_FROM_DISCARD_PILE',
+      pile
+    }
+}
+
 export const removeCardFromDeck = () => {
     return {
       type: 'REMOVE_CARD_FROM_DECK'
