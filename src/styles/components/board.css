@@ -23,6 +23,13 @@
     }
   }
 
+  &--deck {
+    top: 16px;
+    left: -105px;
+    width: 86px;
+    height: 127px;
+  }
+
   &--yellow {
     top: 27px;
     left: 31px;

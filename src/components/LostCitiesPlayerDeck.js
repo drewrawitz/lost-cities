@@ -9,6 +9,17 @@ class LostCitiesPlayerDeck extends Component {
     super(props)
   }
 
+  selectCard(player, obj) {
+    switch(this.props.action) {
+      case "place":
+        return this.props.selectCard(player, obj)
+      case "take":
+        return this.props.updateAlert('error', 'You must pick up a card from the board.')
+      default:
+        return
+    }
+  }
+
   waitTurn() {
     // if no alert is present, show the error message
     if(!this.props.alert) {
@@ -34,10 +45,10 @@ class LostCitiesPlayerDeck extends Component {
             'lost-cities__card',
             obj.color + obj.card,
             {'lost-cities__card--is-selected': playersObj.selected.id === obj.id},
-            {'lost-cities__card--disabled': this.props.turn !== player}
+            {'lost-cities__card--disabled': this.props.turn !== player || this.props.action !== 'place'}
           );
 
-          return <li key={obj.id} onClick={(this.props.turn === player) ? this.props.selectCard.bind(this, player, obj) : this.waitTurn.bind(this)} className={classes}></li>
+          return <li key={obj.id} onClick={(this.props.turn === player) ? this.selectCard.bind(this, player, obj) : this.waitTurn.bind(this)} className={classes}></li>
         })}
         </ul>
       </div>
