@@ -13,6 +13,14 @@ export const updatePlayersCards = (player, cards) => {
     }
 }
 
+export const removeCardFromPlayer = (player, card) => {
+    return {
+      type: 'REMOVE_CARD_FROM_PLAYER',
+      player,
+      card
+    }
+}
+
 export const selectCard = (player, card) => {
   return {
     type: 'SELECT_CARD',
@@ -69,6 +77,7 @@ export const discard = (player, color, card) => {
   return (dispatch) => {
     dispatch(discardCard(color, card));
     dispatch(deselectCard(player));
+    dispatch(removeCardFromPlayer(player, card));
     dispatch(updateAction('take'));
   }
 }

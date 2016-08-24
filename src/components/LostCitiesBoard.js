@@ -8,6 +8,10 @@ class LostCitiesBoard extends Component {
     super(props)
   }
 
+  drawCard() {
+    console.log('draw card')
+  }
+
   discardCard(color, card) {
     this.props.discard(this.props.turn, color, card)
   }
@@ -33,7 +37,7 @@ class LostCitiesBoard extends Component {
             <div className="lost-cities__tooltip-wrapper">
               <span className="lost-cities__tooltip">{tooltip}</span>
             </div>
-            <div className="lost-cities__discard-highlight" onClick={this.discardCard.bind(this, selected.color, selected)}>
+            <div className="lost-cities__discard-highlight" onClick={(action === 'take') ? this.drawCard.bind(this) : this.discardCard.bind(this, selected.color, selected)}>
               <ul className="lost-cities__discard-pile"></ul>
             </div>
           </div>

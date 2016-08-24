@@ -16,6 +16,16 @@ const players = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.player]: updatePlayerObject
       });
+    case 'REMOVE_CARD_FROM_PLAYER':
+      let cardIndex = _.findIndex(state[action.player].cards, action.card)
+      let newCards = [
+        ...state[action.player].cards.slice(0, cardIndex),
+        ...state[action.player].cards.slice(cardIndex + 1)
+      ]
+      const newCardsObj = Object.assign(state[action.player], { cards: newCards });
+      return Object.assign({}, state, {
+        [action.player]: newCardsObj
+      });
     case 'SELECT_CARD':
       let selected = action.card
 
