@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router'
 import rootReducer from './reducers/index';
+import helpers from './lib/helpers';
 
 import deck from './data/deck';
 import players from './data/players';
@@ -11,7 +12,7 @@ import board from './data/board';
 const defaultState = {
   deck,
   players,
-  turn: null,
+  turn: helpers.game.randomTurn(),
   alert: null,
   action: 'place',
   discarded: board.discarded
