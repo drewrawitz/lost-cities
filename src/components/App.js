@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
-import Main from './Main';
+import LostCitiesGame from './LostCitiesGame';
 
 /*
   Here we specify which state needs to be made avaialble to the component
@@ -33,6 +33,6 @@ const mapDispatchToProps = (dispatch) => {
   We're injecting the data at the top level and passing it down, but you can connect() any component to make the actions and the store available to you.
 */
 
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = connect(mapStateToProps, mapDispatchToProps)(LostCitiesGame);
 
 export default App;
