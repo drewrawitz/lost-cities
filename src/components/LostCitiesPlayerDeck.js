@@ -14,7 +14,8 @@ class LostCitiesPlayerDeck extends Component {
       case "place":
         return this.props.selectCard(player, obj)
       case "take":
-        return this.props.updateAlert('error', 'You' + helpers.messages.TAKE_MESSAGE)
+        if(!this.props.alert)
+          return this.props.updateAlert('error', 'You' + helpers.messages.TAKE_MESSAGE)
       default:
         return
     }
