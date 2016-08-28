@@ -5,7 +5,7 @@ module.exports = {
     const data = {
       deck: {
         colors: ['red', 'yellow', 'blue', 'white', 'green'],
-        cards: ['0', '0', '0', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+        cards: [0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
       }
     }
 

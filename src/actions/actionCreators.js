@@ -29,8 +29,17 @@ export const addToExpedition = (player, card) => {
     }
 }
 
+export const updateScore = (player, card) => {
+    return {
+      type: 'UPDATE_SCORE',
+      player,
+      card
+    }
+}
+
 export const expedition = (player, card) => {
   return (dispatch) => {
+    dispatch(updateScore(player, card));
     dispatch(addToExpedition(player, card));
     dispatch(deselectCard(player));
     dispatch(removeCardFromPlayer(player, card));

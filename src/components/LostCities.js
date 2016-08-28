@@ -78,7 +78,7 @@ class LostCities extends Component {
         <div className="lost-cities__action">{player} {action}</div>
         <h2>Lost Cities</h2>
         <span className={playerTwoClasses}>
-          <strong>Player Two:</strong> {this.props.players['playerTwo'].name}
+          <strong>Player Two:</strong> {this.props.players['playerTwo'].name} ({this.props.players['playerTwo'].score})
         </span>
         <LostCitiesPlayerDeck
           {...this.props}
@@ -87,7 +87,7 @@ class LostCities extends Component {
         <LostCitiesBoard {...this.props} />
 
           <span className={playerOneClasses}>
-            <strong>Player One:</strong> {this.props.players['playerOne'].name}
+            <strong>Player One:</strong> {this.props.players['playerOne'].name} ({this.props.players['playerOne'].score})
           </span>
           <LostCitiesPlayerDeck
             {...this.props}

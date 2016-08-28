@@ -61,6 +61,33 @@ const players = (state = {}, action) => {
       newState = Object.assign({}, state);
       newState[action.player].expeditions[action.card.color].cards = newExpeditionCards
       return newState
+    case 'UPDATE_SCORE':
+      newState = Object.assign({}, state);
+
+      // how many investment cards are there?
+      let investments = _.where(newState[action.player].expeditions[action.card.color].cards, { card: 0 })
+      let multiplyer = investments.length + 1
+      let newScore
+      let currentScore = newState[action.player].score
+      let inTheHole = -20
+
+      if(action.card.card === 0) {
+        multiplyer += 1
+        currentScore += inTheHole
+      }
+
+      let cardPoints = action.card.card * multiplyer
+
+      // if an expedition has already been started
+      if(newState[action.player].expeditions[action.card.color].cards.length > 0) {
+        newScore = currentScore + cardPoints
+      } else {
+        newScore = (currentScore + inTheHole) + cardPoints
+      }
+
+      newState[action.player].score = newScore
+
+      return newState
     default:
       return state
   }
