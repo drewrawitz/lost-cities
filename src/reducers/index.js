@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
   alert: game.alert,
   action: game.action,
   discarded: board.discarded,
+  gameStarted: game.game,
   routing: routerReducer
 });
 

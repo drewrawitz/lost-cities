@@ -1,3 +1,9 @@
+export const startGame = () => {
+    return {
+      type: 'START_GAME'
+    }
+}
+
 export const updateDeck = (deck) => {
     return {
       type: 'UPDATE_DECK',

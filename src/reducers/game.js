@@ -14,6 +14,15 @@ const deck = (state = {}, action) => {
   }
 }
 
+const game = (state = {}, action) => {
+  switch (action.type) {
+    case 'START_GAME':
+      return true
+    default:
+      return state
+  }
+}
+
 const players = (state = {}, action) => {
   let newState
   switch (action.type) {
@@ -138,5 +147,6 @@ export default {
     players,
     turn,
     action,
-    alert
+    alert,
+    game
 }

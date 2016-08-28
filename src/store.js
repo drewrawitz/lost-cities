@@ -16,6 +16,7 @@ const defaultState = {
   turn: helpers.game.randomTurn(),
   alert: null,
   action: 'place',
+  gameStarted: false,
   discarded: board.discarded
 };
 

@@ -15,7 +15,13 @@ class LostCitiesGame extends Component {
   }
 
   componentDidMount() {
-    this.dealCards()
+    this.props.startGame()
+  }
+
+  componentDidUpdate(nextProps) {
+    if(nextProps.gameStarted !== this.props.gameStarted) {
+      this.dealCards()
+    }
   }
 
   dealCards() {
