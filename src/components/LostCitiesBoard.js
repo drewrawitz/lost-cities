@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'underscore';
+import _ from 'lodash';
 import classNames from 'classnames';
 import LostCitiesExpeditions from './LostCitiesExpeditions';
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";

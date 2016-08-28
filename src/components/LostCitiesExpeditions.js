@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import classNames from 'classnames';
-import _ from 'underscore';
+import _ from 'lodash';
 
 class LostCitiesExpeditions extends Component {
 

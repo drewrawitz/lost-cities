@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'underscore';
+import _ from 'lodash';
 import LostCitiesPlayerDeck from './LostCitiesPlayerDeck';
 import LostCitiesBoard from './LostCitiesBoard';
 import classNames from 'classnames';

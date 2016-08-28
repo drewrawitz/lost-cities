@@ -41,6 +41,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "history": "^2.0.0",
+    "lodash": "^4.15.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.4.5",
@@ -48,8 +49,7 @@
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-firebasev3": "^0.1.2",
-    "redux-thunk": "^2.1.0",
-    "underscore": "^1.8.3"
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",
