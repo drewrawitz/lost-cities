@@ -21,6 +21,8 @@ class LostCitiesBoard extends Component {
       let lastDiscardedIndex = this.props.discarded[pile].cards.length - 1
       this.props.takeCardFromPile(this.props.turn, this.props.discarded[pile].cards[lastDiscardedIndex], pile)
     }
+    // reset the last discarded state after each turn
+    this.setState({ lastDiscardedColor: null })
   }
 
   discardCard(color, card) {
