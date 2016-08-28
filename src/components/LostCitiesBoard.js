@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
 import classNames from 'classnames';
+import LostCitiesExpeditions from './LostCitiesExpeditions';
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 class LostCitiesBoard extends Component {
@@ -48,7 +49,7 @@ class LostCitiesBoard extends Component {
 
       highlightMarkup = (
         <ReactCSSTransitionGroup transitionName="transition--fade" transitionAppear={true} transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionAppearTimeout={300}>
-          <div className="lost-cities__discard-highlight" onClick={(action === 'take') ? self.drawCard.bind(self, pile) : self.discardCard.bind(self, selected.color, selected)}>
+          <div className="lost-cities__highlight" onClick={(action === 'take') ? self.drawCard.bind(self, pile) : self.discardCard.bind(self, selected.color, selected)}>
             <div className="lost-cities__tooltip-wrapper">
               <span className="lost-cities__tooltip">{tooltip}</span>
             </div>
@@ -106,6 +107,7 @@ class LostCitiesBoard extends Component {
             {markup}
           })}
         </div>
+        <LostCitiesExpeditions {...this.props} />
       </div>
     )
   }

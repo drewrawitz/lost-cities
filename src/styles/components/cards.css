@@ -20,6 +20,17 @@
     top: 0;
     left: 0;
   }
+
+  &--pile {
+    position: absolute;
+
+    @for $i from 1 to 12 {
+      &:nth-child($(i)) {
+        top: calc(-25px + (15px * $i));
+        z-index: calc(-$(i) + 13);
+      }
+    }
+  }
 }
 
 .lost-cities__card-list {

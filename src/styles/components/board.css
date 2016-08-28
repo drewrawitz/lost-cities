@@ -1,8 +1,12 @@
+$card-width: 98px;
+$card-height: 131px;
+
 .lost-cities__board {
   position: relative;
   background: url(../images/lost-cities_board.png) no-repeat;
   width: 644px;
   height: 183px;
+  z-index: 100;
 }
 
 .lost-cities__player {
@@ -16,22 +20,16 @@
 }
 
 .lost-cities__board-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  margin: 35px 0;
+  margin: 100px 0;
 }
 
 .lost-cities__discard-wrapper {
   position: absolute;
-  height: 131px;
-  width: 98px;
-  cursor: pointer;
-
-  &:hover {
-    .lost-cities__tooltip-wrapper {
-      opacity: 1;
-    }
-  }
+  height: $card-height;
+  width: $card-width;
 
   &--deck {
     top: 16px;
@@ -62,23 +60,28 @@
   }
 }
 
-.lost-cities__discard-highlight {
+.lost-cities__highlight {
   position: relative;
   z-index: 100;
   background: rgba(#fff, 0.5);
   border: 4px solid rgba(#000, 0.7);
   border-radius: 15px;
   height: 100%;
+  cursor: pointer;
   transition: background 0.3s ease-in-out;
 
   &:hover {
     background: rgba(#fff, 0.7);
+
+    .lost-cities__tooltip-wrapper {
+      opacity: 1;
+    }
   }
 }
 
 .lost-cities__tooltip-wrapper {
   position: absolute;
-  top: -18px;
+  top: -22px;
   left: 0;
   z-index: 1;
   width: 100%;
@@ -152,4 +155,36 @@
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.lost-cities__expedition-pile {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lost-cities__expedition-highlight {
+  position: relative;
+  top: 100px;
+  z-index: 101;
+  height: $card-height;
+  width: $card-width;
+}
+
+.lost-cities__expeditions-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 110px;
+  width: 100%;
+}
+
+.lost-cities__expeditions {
+    position: absolute;
+    top: 0;
+
+    &--yellow { left: 140px; }
+    &--blue { left: 257px; }
+    &--white { left: 384px; }
+    &--green { left: 509px; }
+    &--red { left: 631px; }
 }

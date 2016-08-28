@@ -12,6 +12,7 @@ import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
+import postcss_for from 'postcss-for';
 import rucksack from 'rucksack-css';
 import nested from 'postcss-nested';
 import postimport from 'postcss-import';
@@ -94,7 +95,16 @@ gulp.task('browserify', () => {
 gulp.task('styles', () => {
   gulp.src(paths.mainCss)
   .pipe(sourcemaps.init())
-  .pipe(postcss([postimport, rucksack, vars, extend, nested, autoprefixer, cssnano]))
+  .pipe(postcss([
+    postimport,
+    postcss_for,
+    rucksack,
+    vars,
+    extend,
+    nested,
+    autoprefixer,
+    cssnano({ zindex: false })
+  ]))
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(paths.distCss))
   .pipe(reload({ stream: true }));
