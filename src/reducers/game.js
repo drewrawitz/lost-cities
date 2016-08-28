@@ -58,14 +58,13 @@ const players = (state = {}, action) => {
     case 'ADD_TO_EXPEDITION':
       const newExpeditionCards = [...state[action.player].expeditions[action.card.color].cards, action.card]
 
-      newState = Object.assign({}, state);
+      newState = Object.assign({}, state)
       newState[action.player].expeditions[action.card.color].cards = newExpeditionCards
       return newState
     case 'UPDATE_SCORE':
-      newState = Object.assign({}, state);
-
-      // how many investment cards are there?
-      let investments = _.where(newState[action.player].expeditions[action.card.color].cards, { card: 0 })
+      newState = Object.assign({}, state)
+      let cards = newState[action.player].expeditions[action.card.color].cards
+      let investments = _.filter(cards, { card: 0 })
       let multiplyer = investments.length + 1
       let newScore
       let currentScore = newState[action.player].score
