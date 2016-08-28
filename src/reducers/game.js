@@ -15,6 +15,7 @@ const deck = (state = {}, action) => {
 }
 
 const players = (state = {}, action) => {
+  let newState
   switch (action.type) {
     case 'UPDATE_PLAYERS_CARDS':
       const updatePlayerObject = Object.assign(state[action.player], { cards: action.cards });
@@ -54,6 +55,12 @@ const players = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.player]: newPlayerCardsObj
       });
+    case 'ADD_TO_EXPEDITION':
+      const newExpeditionCards = [...state[action.player].expeditions[action.card.color].cards, action.card]
+
+      newState = Object.assign({}, state);
+      newState[action.player].expeditions[action.card.color].cards = newExpeditionCards
+      return newState
     default:
       return state
   }

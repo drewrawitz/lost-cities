@@ -21,6 +21,23 @@ export const removeCardFromPlayer = (player, card) => {
     }
 }
 
+export const addToExpedition = (player, card) => {
+    return {
+      type: 'ADD_TO_EXPEDITION',
+      player,
+      card
+    }
+}
+
+export const expedition = (player, card) => {
+  return (dispatch) => {
+    dispatch(addToExpedition(player, card));
+    dispatch(deselectCard(player));
+    dispatch(removeCardFromPlayer(player, card));
+    dispatch(updateAction('take'));
+  }
+}
+
 export const switchTurns = (player) => {
     return {
       type: 'SWITCH_TURNS',
