@@ -34,15 +34,18 @@ class LostCitiesExpeditions extends Component {
       )
 
       _.each(colors, function(color) {
+        let highestCard = {}
         let expeditionCards = []
         let expeditionClasses = classNames(
           'lost-cities__expeditions',
           'lost-cities__expeditions--' + color
         );
+        const cards = self.props.players[turn].expeditions[color].cards
+        highestCard = (cards.length) ? cards[cards.length - 1].card : 0
 
         markup = (
           <div key={color} className={expeditionClasses}>
-            {(selected.color === color) ? placeCard : null}
+            {(selected.color === color && parseInt(selected.card) >= highestCard) ? placeCard : null}
             <ul className="lost-cities__expedition-pile">
               {_.map(self.props.players[turn].expeditions[color].cards, (obj) => {
                 let classes = classNames(
